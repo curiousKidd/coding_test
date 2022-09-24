@@ -4,9 +4,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Programmers programmers = new Programmers();
+        KakaoCoding kakaoCoding = new KakaoCoding();
 
-        programmers.mbtiTest();
+        kakaoCoding.send();
 
     }
 
