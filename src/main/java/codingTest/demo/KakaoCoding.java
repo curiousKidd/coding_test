@@ -20,7 +20,7 @@ public class KakaoCoding {
         int[] answer = {};
 
         Map<String, Integer> map = new HashMap<String, Integer>();
-        Map<Integer, Integer> retrunMap = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> returnMap = new HashMap<Integer, Integer>();
 
         for (String term : terms) {
             String[] s = term.split(" ");
@@ -35,16 +35,16 @@ public class KakaoCoding {
             LocalDate localDatePlus = localDate.plusMonths(map.get(s[1])).minusDays(1);
 
             if (localToday.isAfter(localDatePlus)) {
-                retrunMap.put(i, i);
+                returnMap.put(i, i);
                 i++;
             }
         }
 
         answer = new int[i - 1];
         i = 0;
-        for (Integer key : retrunMap.keySet()) {
-            System.out.println(retrunMap.get(key));
-            answer[i] = retrunMap.get(key);
+        for (Integer key : returnMap.keySet()) {
+            System.out.println(returnMap.get(key));
+            answer[i] = returnMap.get(key);
             i++;
         }
 
@@ -55,7 +55,6 @@ public class KakaoCoding {
     public void send() {
         int cap = 2;
         int n = 7;
-        //        int[] deliveries = {1, 0, 3, 1, 2};
         int[] deliveries = {1, 0, 2, 0, 1, 0, 2};
         int[] pickups = {0, 3, 0, 4, 0};
 
