@@ -6,7 +6,9 @@ public class Main {
 
         KakaoCoding kakaoCoding = new KakaoCoding();
 
-        kakaoCoding.send();
+        codeUp codeUp = new codeUp();
+
+        codeUp.test01();
 
     }
 
