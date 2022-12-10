@@ -1,15 +1,11 @@
-package codingTest.demo;
+package codingTest.demo.codeUp.programmers;
 
 import java.util.Stack;
 
-public class codeUp {
-
-    public void print01() {
-        System.out.println("Hello");
-    }
+public class Solution01 {
 
     // 카카오 2019 인형뽑기
-    public void test01() {
+    public void solution() {
         int[][] board = {{0, 0, 0, 0, 0}, {0, 0, 1, 0, 3}, {0, 2, 5, 0, 1}, {4, 2, 4, 4, 2}, {3, 5, 1, 3, 1}};
         int[] moves = {1, 5, 3, 5, 1, 2, 1, 4};
 

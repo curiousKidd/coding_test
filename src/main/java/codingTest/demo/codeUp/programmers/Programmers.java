@@ -1,4 +1,4 @@
-package codingTest.demo;
+package codingTest.demo.codeUp.programmers;
 
 import java.util.Arrays;
 import java.util.HashMap;
