@@ -17,7 +17,7 @@ public class Solution03 {
             if (dart[i].matches("[0-9]")) {
                 index++;
                 score[index] = Integer.parseInt(dart[i]);
-                // 두자리 수 숫자?
+                // 두자리 수 숫자
                 if (dart[i + 1].matches("[0-9]")) {
                     score[index] *= 10;
                     i++;
