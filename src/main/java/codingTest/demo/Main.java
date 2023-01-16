@@ -1,12 +1,14 @@
 package codingTest.demo;
 
-import codingTest.demo.codeUp.programmers.Solution05;
+import codingTest.demo.codeUp.programmers.Solution04;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class Main {
 
     public static void main(String[] args) {
 
-        Solution05 solution = new Solution05();
+        Solution04 solution = new Solution04();
 
         solution.solution();
 
