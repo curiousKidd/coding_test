@@ -1,4 +1,4 @@
-package codingTest.demo.codeUp.programmers;
+package codingTest.demo.codeUp.programmers.code_before;
 
 import java.util.Arrays;
 

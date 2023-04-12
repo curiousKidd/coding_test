@@ -1,6 +1,6 @@
 package codingTest.demo;
 
-import codingTest.demo.codeUp.programmers.Solution04;
+import codingTest.demo.codeUp.programmers.code_before.Solution04;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
