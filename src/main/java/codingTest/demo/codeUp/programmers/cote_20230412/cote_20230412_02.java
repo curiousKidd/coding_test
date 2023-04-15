@@ -1,21 +1,17 @@
 package codingTest.demo.codeUp.programmers.cote_20230412;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 public class cote_20230412_02 {
 
     public static void main(String[] args) {
-        String s = "3people unFollowed    me ";
+        String s = "3people unFollowed    me  ";
 
         cote_20230412_02 cote = new cote_20230412_02();
 
-        System.out.println("value = /" + cote.solution(s) + "/");
+        System.out.println("value = " + cote.solution(s) + "/");
     }
 
     public String solution(String s) {
-        s += "G";
-        String[] arr = s.split(" ");
+        String[] arr = s.split("\s*");
 
         String answer = "";
 
@@ -27,16 +23,33 @@ public class cote_20230412_02 {
         //
         //        return String.join(" ", texts);
 
-        return Arrays.stream(arr)
-                .limit(arr.length)
-                .map(e -> {
-                    if (e.equals("")) {
-                        return "";
-                    } else {
-                        return String.valueOf(e.charAt(0)).toUpperCase() + e.substring(1).toLowerCase();
-                    }
-                })
-                .collect(Collectors.joining(" "));
+        //        return Arrays.stream(arr)
+        //                .limit(arr.length)
+        //                .map(e -> {
+        //                    if (e.equals("")) {
+        //                        System.out.println("e = " + e);
+        //                        return "";
+        //                    } else {
+        //                        System.out.println("e = " + e);
+        //                        return String.valueOf(e.charAt(0)).toUpperCase() + e.substring(1).toLowerCase();
+        //                    }
+        //                })
+        //                .collect(Collectors.joining(" "));
+
+        StringBuilder sb = new StringBuilder();
+        boolean b = true;
+        for (char c : s.toCharArray()) {
+            if (Character.isWhitespace(c)) {
+                sb.append(c);
+                b = true;
+            } else if (b) {
+                sb.append(Character.toUpperCase(c));
+                b = false;
+            } else {
+                sb.append(Character.toLowerCase(c));
+            }
+        }
+        return sb.toString();
     }
 
     private String splitText(String x) {
