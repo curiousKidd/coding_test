@@ -1,7 +1,7 @@
 package codingTest.demo.codeUp.programmers.cote_20230416;
 
 public class cote_01 {
-    //https://school.programmers.co.kr/learn/courses/30/lessons/43165
+    //https://school.programmers.co.kr/learn/courses/30/lessons/43165  
 
     public static void main(String[] args) {
         cote_01 cote = new cote_01();
