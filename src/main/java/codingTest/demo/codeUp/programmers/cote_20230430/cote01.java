@@ -8,7 +8,7 @@ public class cote01 {
     // 같은 숫자는 싫어
 
     public static void main(String[] args) {
-        int[] arr = {1, 1, 3, 3, 0, 1, 1}
+        int[] arr = {1, 1, 3, 3, 0, 1, 1};
 
         System.out.println("solution(A,B) = " + solution(arr));
 
