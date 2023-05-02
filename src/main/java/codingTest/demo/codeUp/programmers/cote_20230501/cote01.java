@@ -9,7 +9,8 @@ public class cote01 {
         int[] progresses = {93, 30, 55};
         int[] speeds = {1, 30, 5};
 
-        System.out.println("solution(A,B) = " + solution(progresses, speeds));
+        System.out.println("solution(A,B) = " + solution(progresses, speeds));  
+
 
     }
 
