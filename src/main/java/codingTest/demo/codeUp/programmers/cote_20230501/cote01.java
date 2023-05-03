@@ -1,5 +1,7 @@
 package codingTest.demo.codeUp.programmers.cote_20230501;
 
+import java.util.Arrays;
+
 public class cote01 {
 
     // https://school.programmers.co.kr/learn/courses/30/lessons/42586
@@ -15,16 +17,18 @@ public class cote01 {
     }
 
     public static int[] solution(int[] progresses, int[] speeds) {
+        int[] complateDay = new int[100];
 
-        int[] complateDay = new int[progresses.length];
+        int day = 0;
 
         for (int i = 0; i < progresses.length; i++) {
-            //            progresses[i] +=
+            while (progresses[i] + (day * speeds[i]) < 100) {
+                day++;
+            }
+            complateDay[day]++;
         }
 
-        int[] answer = {};
-
-        return answer;
+        return Arrays.stream(complateDay).filter(i -> i != 0).toArray();
     }
 
     /**
