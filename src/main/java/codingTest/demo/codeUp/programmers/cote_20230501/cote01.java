@@ -11,8 +11,7 @@ public class cote01 {
         int[] progresses = {93, 30, 55};
         int[] speeds = {1, 30, 5};
 
-        System.out.println("solution(A,B) = " + solution(progresses, speeds));  
-
+        System.out.println("solution(A,B) = " + solution(progresses, speeds));
 
     }
 
@@ -22,10 +21,23 @@ public class cote01 {
         int day = 0;
 
         for (int i = 0; i < progresses.length; i++) {
+            // 제일 처음에 있는 진행도가 100이 될때까지 계산
             while (progresses[i] + (day * speeds[i]) < 100) {
                 day++;
             }
             complateDay[day]++;
+        }
+
+        return Arrays.stream(complateDay).filter(i -> i != 0).toArray();
+    }
+
+    public static int[] solution2(int[] progresses, int[] speeds) {
+        int[] complateDay = new int[100];
+
+        int day = 0;
+
+        for (int i = 0; i < progresses.length; i++) {
+            progresses[i] += speeds[i];
         }
 
         return Arrays.stream(complateDay).filter(i -> i != 0).toArray();
