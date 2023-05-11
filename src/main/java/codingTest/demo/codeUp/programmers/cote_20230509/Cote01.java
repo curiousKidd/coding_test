@@ -1,6 +1,6 @@
 package codingTest.demo.codeUp.programmers.cote_20230509;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -11,8 +11,8 @@ public class Cote01 {
 
     public static void main(String[] args) {
 
-        int[] priorities = {2, 1, 3, 2};
-        int location = 2;
+        int[] priorities = {1, 1, 9, 1, 1, 1};
+        int location = 0;
 
         Cote01 cote01 = new Cote01();
 
@@ -21,32 +21,34 @@ public class Cote01 {
     }
 
     public int solution(int[] priorities, int location) {
-        int answer = 0;
+        int answer = 1;
+        int idx = 0;
 
         Queue<Integer> integers = new LinkedList<>();
+        Queue<Integer> point = new LinkedList<>();
 
-        int asInt = Arrays.stream(priorities).max().getAsInt();
-        Arrays.stream(priorities).forEach(m -> integers.add(m));
-
-        int out = 1;
-
-        while (out == 1) {
-            answer = integers.peek();
-
-            if (answer == asInt) {
-                System.out.println(integers);
-                location -= 1;
-                asInt -= asInt;
-            } else {
-                integers.add(answer);
-            }
-
-            if (location == 0) {
-                out += 1;
-            }
-
+        for (int i : priorities) {
+            integers.add(i);
+            point.add(idx);
+            idx++;
         }
 
+        int max = Collections.max(integers);
+        System.out.println("max = " + max);
+
+        while (!integers.isEmpty()) {
+            int a = integers.poll();
+            int lk = point.poll();
+            if (a == max && lk == location) {
+                return answer;
+            } else if (a == max) {
+                answer += 1;
+                max = Collections.max(integers);
+            } else {
+                integers.add(a);
+                point.add(lk);
+            }
+        }
         return answer;
     }
 
