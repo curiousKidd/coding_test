@@ -22,19 +22,16 @@ public class Cote01 {
 
     public int solution(int[] priorities, int location) {
         int answer = 1;
-        int idx = 0;
 
         Queue<Integer> integers = new LinkedList<>();
         Queue<Integer> point = new LinkedList<>();
 
-        for (int i : priorities) {
-            integers.add(i);
-            point.add(idx);
-            idx++;
+        for (int i = 0; i < priorities.length; i++) {
+            integers.add(priorities[i]);
+            point.add(i);
         }
 
         int max = Collections.max(integers);
-        System.out.println("max = " + max);
 
         while (!integers.isEmpty()) {
             int a = integers.poll();
