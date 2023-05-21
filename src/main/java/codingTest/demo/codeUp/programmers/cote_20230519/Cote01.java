@@ -11,7 +11,7 @@ public class Cote01 {
 
         String name = "JAZ";
 
-        System.out.println("cote01 = " + cote01.solution(name));
+        System.out.println("cote01 = " + cote01.solution2(name));
     }
 
     public int solution(String name) {
