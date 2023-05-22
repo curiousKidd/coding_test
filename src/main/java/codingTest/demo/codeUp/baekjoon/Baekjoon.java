@@ -1,4 +1,4 @@
-package codingTest.demo;
+package codingTest.demo.codeUp.baekjoon;
 
 import java.util.Arrays;
 
