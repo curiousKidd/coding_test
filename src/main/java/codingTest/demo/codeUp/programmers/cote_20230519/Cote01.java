@@ -11,7 +11,7 @@ public class Cote01 {
 
         String name = "JAZ";
 
-        System.out.println("cote01 = " + cote01.solution2(name));
+        System.out.println("cote01 = " + cote01.solution(name));
     }
 
     public int solution(String name) {
@@ -25,7 +25,7 @@ public class Cote01 {
                 answer += c - 'A';
             } else {
                 answer++;
-                answer += (c - 'A') - ((c - 'N') * 2);
+                answer += ('Z' - c) + 1;
             }
         }
 
