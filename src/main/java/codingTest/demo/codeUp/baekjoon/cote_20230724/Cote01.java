@@ -1,4 +1,4 @@
-package com.example.demo.codingTest.cote_20230724;
+package codingTest.demo.codeUp.baekjoon.cote_20230724;
 
 public class Cote01 {
 
