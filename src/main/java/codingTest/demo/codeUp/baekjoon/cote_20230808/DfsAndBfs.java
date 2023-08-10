@@ -7,7 +7,7 @@ public class DfsAndBfs {
 
     // https://www.acmicpc.net/problem/1260
     // DFS와 BFS
-    
+    // test
     public static void main(String[] args) {
         int[][] graph = {{1, 2}, {1, 3}, {1, 4}, {2, 4}, {3, 4}};
         int v = 1;
