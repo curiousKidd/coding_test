@@ -11,7 +11,7 @@ public class cote_20230412_02 {
     }
 
     public String solution(String s) {
-        String[] arr = s.split("\s*");
+        String[] arr = s.split("\\s*");
 
         String answer = "";
 
