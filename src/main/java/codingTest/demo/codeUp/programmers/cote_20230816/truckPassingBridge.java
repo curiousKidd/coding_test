@@ -9,25 +9,42 @@ public class truckPassingBridge {
 
         int bridge_length = 2;
         int weight = 10;
-        int[] truck_weights = {7,4,5,6};
+        int[] truck_weights = {7, 4, 5, 6};
 
+        System.out.println("time = " + solution(bridge_length, weight, truck_weights));
 
     }
 
     public static int solution(int bridge_length, int weight, int[] truck_weights) {
-        int answer = 1;
+        int answer = 0;
         int sum = 0;
 
         Queue<Integer> q = new LinkedList<>();
 
-        q.add(truck_weights[0]);
-        while (!q.isEmpty()){
-            Integer peek = q.peek();
+        for (int i : truck_weights) {
+            while (true) {
+                if (q.isEmpty()) {
+                    q.offer(i);
+                    sum += i;
+                    answer++;
+                    break;
+                } else if (q.size() == bridge_length) {
+                    sum -= q.poll();
 
-            sum += peek;
+                } else {
+                    answer++;
 
+                    if (sum + i > weight) {
+                        q.offer(0);
+                    } else {
+                        q.offer(i);
+                        sum += i;
+                        break;
+                    }
+                }
+            }
         }
 
-        return answer;
+        return answer + bridge_length;
     }
 }
