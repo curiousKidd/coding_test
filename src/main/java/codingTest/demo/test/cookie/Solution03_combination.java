@@ -3,7 +3,7 @@ package codingTest.demo.test.cookie;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Test {
+public class Solution03_combination {
 
     static int maxJellyCount;
 
