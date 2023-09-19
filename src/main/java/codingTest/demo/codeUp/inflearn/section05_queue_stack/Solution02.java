@@ -32,6 +32,7 @@ public class Solution02 {
                 while (stack.pop() != '(') ;
             } else stack.push(x);
         }
+        
         for (int i = 0; i < stack.size(); i++) answer += stack.get(i);
         return answer;
     }
