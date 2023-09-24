@@ -3,27 +3,28 @@ package codingTest.demo.codeUp.inflearn.section05_queue_stack;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class solution01 {
+public class Solution05 {
 
-    public String solution(String str) {
-        String answer = "YES";
+    //쇠막대기
+
+    public int solution(String str) {
+        int cnt = 0;
         Stack<Character> stack = new Stack<>();
-        for (char x : str.toCharArray()) {
-            if (x == '(') stack.push(x);
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '(') stack.push('(');
             else {
-                if (stack.isEmpty()) return "NO";
                 stack.pop();
+                if (str.charAt(i - 1) == '(') cnt += stack.size();
+                else cnt++;
             }
         }
-        if (!stack.isEmpty()) return "NO";
-        return answer;
+        return cnt;
     }
-    
+
     public static void main(String[] args) {
-        solution01 T = new solution01();
+        Solution05 T = new Solution05();
         Scanner kb = new Scanner(System.in);
         String str = kb.next();
         System.out.println(T.solution(str));
     }
-
 }
