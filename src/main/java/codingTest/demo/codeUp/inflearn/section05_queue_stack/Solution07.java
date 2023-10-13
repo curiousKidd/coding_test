@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Section07 {
+public class Solution07 {
 
     public String solution(String need, String plan) {
         String answer = "YES";
@@ -20,7 +20,7 @@ public class Section07 {
     }
 
     public static void main(String[] args) {
-        Section07 T = new Section07();
+        Solution07 T = new Solution07();
         Scanner kb = new Scanner(System.in);
         String a = kb.next();
         String b = kb.next();
