@@ -1,30 +1,23 @@
-package codingTest.demo.codeUp.programmers.cote_20240717;
+package codingTest.demo.codeUp.programmers.cote_20240718;
 
 // dp 정수 삼각형
 public class Solution01 {
-    public int solution(int[][] triangle) {
-        int[][] dp = new int[triangle.length][triangle.length];
-        dp[0][0] = triangle[0][0];
+    public int solution(int m, int n, int[][] puddles) {
+        int mod = 1000000007;
 
-        for (int i = 1; i < triangle.length; i++) {
-            // 맨 왼쪽
-            dp[i][0] = dp[i - 1][0] + triangle[i][0];
+        int[][] board = new int[n + 1][m + 1];
+        for (int i = 0; i < puddles.length; i++) {
+            board[puddles[i][1]][puddles[i][0]] = -1;
+        }
 
-            // 중간
-            for (int j = 1; j <= i; j++) {
-                dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - 1]) + triangle[i][j];
+        board[1][1] = 1;
+        for (int i = 1; i < n + 1; i++) {
+            for (int j = 1; j < m + 1; j++) {
+                if (board[i][j] == -1) continue;
+                if (board[i - 1][j] > 0) board[i][j] += board[i - 1][j] % mod;
+                if (board[i][j - 1] > 0) board[i][j] += board[i][j - 1] % mod;
             }
-
-            // 맨 오른쪽
-            dp[i][i] = dp[i - 1][i - 1] + triangle[i][i];
         }
-
-        int answer = 0;
-
-        for (int i = 0; i < triangle.length; i++) {
-            answer = Math.max(answer, dp[triangle.length - 1][i]);
-        }
-
-        return answer;
+        return board[n][m] % mod;
     }
 }
