@@ -1,23 +1,53 @@
-package codingTest.demo.codeUp.programmers.cote_20240718;
+package codingTest.demo.codeUp.programmers.cote_20240719;
 
-// dp 정수 삼각형
 public class Solution01 {
-    public int solution(int m, int n, int[][] puddles) {
-        int mod = 1000000007;
+    int[][] min, max;
 
-        int[][] board = new int[n + 1][m + 1];
-        for (int i = 0; i < puddles.length; i++) {
-            board[puddles[i][1]][puddles[i][0]] = -1;
-        }
+    public int solution(String arr[]) {
+        int size = arr.length / 2 + 1;
+        min = new int[size][size];
+        max = new int[size][size];
 
-        board[1][1] = 1;
-        for (int i = 1; i < n + 1; i++) {
-            for (int j = 1; j < m + 1; j++) {
-                if (board[i][j] == -1) continue;
-                if (board[i - 1][j] > 0) board[i][j] += board[i - 1][j] % mod;
-                if (board[i][j - 1] > 0) board[i][j] += board[i][j - 1] % mod;
+        int[] list = new int[size];
+
+        for (int i = 0; i < arr.length; i += 2) {
+            int num = Integer.parseInt(arr[i]);
+            if (i == 0) {
+                list[i / 2] = num;
+            } else {
+                list[i / 2] = arr[i - 1].equals("+") ? num : -num;
             }
         }
-        return board[n][m] % mod;
+
+        for (int i = size - 1; i >= 0; i--) {
+            for (int j = i; j < size; j++) {
+                if (i == j) {
+                    min[i][j] = list[i];
+                    max[i][j] = list[i];
+                } else {
+                    min[i][j] = Integer.MAX_VALUE;
+                    max[i][j] = Integer.MIN_VALUE;
+
+                    for (int k = i; k < j; k++) {
+                        boolean value = k == i ? true : false;
+                        func(min[i][k], min[k + 1][j], i, j, value);
+                        func(min[i][k], max[k + 1][j], i, j, value);
+                        func(max[i][k], min[k + 1][j], i, j, value);
+                        func(max[i][k], max[k + 1][j], i, j, value);
+                    }
+                }
+            }
+        }
+        return max[0][size - 1];
+    }
+
+    public void func(int a, int b, int x, int y, boolean value) {
+        if (value && a < 0) {
+            min[x][y] = Math.min(min[x][y], Math.min(a - b, a + b));
+            max[x][y] = Math.max(max[x][y], Math.max(a - b, a + b));
+        } else {
+            min[x][y] = Math.min(min[x][y], a + b);
+            max[x][y] = Math.max(max[x][y], a + b);
+        }
     }
 }
