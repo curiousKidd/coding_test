@@ -10,8 +10,8 @@ public class Solution {
     // 모의고시
     public static void main(String[] args) {
 
-        //        int[] answers = {1,2,3,4,5};
-        int[] answers = {1, 3, 2, 4, 2};
+        int[] answers = {1, 2, 3, 4, 5};
+        //        int[] answers = {1, 3, 2, 4, 2};
 
         Solution solution = new Solution();
         int[] solution1 = solution.solution(answers);
@@ -24,20 +24,20 @@ public class Solution {
         int[] p2 = {2, 1, 2, 3, 2, 4, 2, 5};
         int[] p3 = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
 
-        int answer1 = 0, answer2 = 0, answer3 = 0;
+        int[] answer = new int[3];
 
         for (int i = 0; i < answers.length; i++) {
-            answer1 += answers[i] == p1[i % p1.length] ? 1 : 0;
-            answer2 += answers[i] == p2[i % p2.length] ? 1 : 0;
-            answer3 += answers[i] == p3[i % p3.length] ? 1 : 0;
+            if (answers[i] == p1[i % p1.length]) answer[0]++;
+            if (answers[i] == p2[i % p2.length]) answer[1]++;
+            if (answers[i] == p3[i % p3.length]) answer[2]++;
         }
 
-        List<Integer> list = new ArrayList<>();
-        if (answer1 != 0) list.add(answer1);
-        if (answer2 != 0) list.add(answer2);
-        if (answer3 != 0) list.add(answer3);
+        int max = Math.max(answer[0], Math.max(answer[1], answer[2]));
 
-        System.out.println("list = " + list.toString());
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            if (max == answer[i]) list.add(i + 1);
+        }
 
         return list.stream().mapToInt(Integer::intValue).sorted().toArray();
     }
