@@ -56,7 +56,11 @@ public class Solution250421 {
         for (String c : completion) {
             countMap.put(c, countMap.get(c) - 1);
         }
-        
+
+        /// entrySet >  k v map를 반환하네
+        /// hashMap는 어떻게 중복을 허용하지 않을까?
+        /// hashCode()를 통해서 서로 같은 입력값인지를 비교한다고 하네
+        /// 이건 hash 함수랑 같은 개념이려나
         for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
             if (entry.getValue() > 0) {
                 return entry.getKey();
