@@ -1,5 +1,8 @@
 package codingTest.demo.codeUp.programmers.cote_250523;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution250523 {
 
     // https://school.programmers.co.kr/learn/courses/30/lessons/42578
@@ -15,11 +18,21 @@ public class Solution250523 {
     }
 
     public static int solution(String[][] clothes) {
-        int answer = 0;
+        // 의상 종류별 개수 세기
+        Map<String, Integer> map = new HashMap<>();
+        for (String[] cloth : clothes) {
+            String type = cloth[1];  // [의상 이름, 의상 종류]
+            map.put(type, map.getOrDefault(type, 0) + 1);
+        }
 
-        String[][] filter = new String[clothes.length][clothes.length];
+        // (각 종류의 아이템 수 + 1) 을 모두 곱한 뒤 —1
+        int combinations = 1;
+        for (int cnt : map.values()) {
+            combinations *= (cnt + 1);
+        }
 
-        return answer;
+        // 모든 종류를 다 안 입는 경우 하나를 빼준다
+        return combinations - 1;
     }
 
 }
