@@ -21,15 +21,20 @@ public class Solution250526 {
         int answer = n;
         Map<Integer, Integer> map = new HashMap<>();
 
+        //잃어버린
         for (int i = 0; i < lost.length; i++) {
             int lostNumber = lost[i];
             map.put(lostNumber, map.getOrDefault(lostNumber, 0) - 1);
         }
+
+        //여유
         for (int i = 0; i < reserve.length; i++) {
             int reserveNumber = reserve[i];
             map.put(reserveNumber, map.getOrDefault(reserveNumber, 0) + 1);
         }
 
+        //카운트
+        // 이러면 바른 계산이 안되지
         for (Map.Entry<Integer, Integer> cnt : map.entrySet()) {
             if (cnt.getValue() < 0) {
                 answer += cnt.getValue();
