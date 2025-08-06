@@ -6,30 +6,33 @@ public class Solution250805 {
     // 서버 증설 회수
 
     public static void main(String[] args) {
-        int[] players = {0, 2, 3, 3, 1, 2, 0, 0, 0, 0, 4, 2, 0, 6, 0, 4, 2, 13, 3, 5, 10, 0, 1, 5};
+        int[] players1 = {0, 2, 3, 3, 1, 2, 0, 0, 0, 0, 4, 2, 0, 6, 0, 4, 2, 13, 3, 5, 10, 0, 1, 5};
+        int[] players2 = {0, 0, 0, 10, 0, 12, 0, 15, 0, 1, 0, 1, 0, 0, 0, 5, 0, 0, 11, 0, 8, 0, 0, 0};
+        int[] players3 = {0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 0, 5, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1};
 
 
-        System.out.println("solution(sizes) = " + solution(players, 3, 5));
+//        System.out.println("solution(sizes) = " + solution(players1, 3, 5)); // 7
+        System.out.println("solution(sizes) = " + solution(players2, 5, 1)); // 11
+        System.out.println("solution(sizes) = " + solution(players3, 1, 1)); // 12
     }
 
     public static int solution(int[] players, int m, int k) {
         int answer = 0;
-
-        int[] servers = new int[24];
-
+        int[] addServers = new int[24];
         int serverCnt = 1;
+
         for (int i = 0; i < 24; i++) {
-            serverCnt = serverCnt - servers[i];
+            serverCnt = serverCnt - addServers[i];
 
-            int otherUser = players[i] - (serverCnt * m);
-            int plusServerCnt = otherUser % m == 0 ? otherUser / m : otherUser / m + 1;
+            int otherUser = Math.max(players[i] - ((serverCnt * m) - 1), 0);
+            int addServerCnt = otherUser % m == 0 ? otherUser / m : otherUser / m + 1;
 
-            serverCnt += plusServerCnt;
-            if (i < 19) {
-                servers[i + 5] = plusServerCnt;
+            serverCnt += addServerCnt;
+            if (i < 24 - k) {
+                addServers[i + k] = addServerCnt;
             }
 
-            answer += plusServerCnt;
+            answer += addServerCnt;
         }
 
         return answer;
