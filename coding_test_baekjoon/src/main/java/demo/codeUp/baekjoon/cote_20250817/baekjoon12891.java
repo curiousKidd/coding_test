@@ -9,7 +9,6 @@ public class baekjoon12891 {
 
     // DNA 비밀번호
     // https://www.acmicpc.net/problem/12891
-    // git 연결 테스트
 
 
     static int[] passwordRegex = new int[4];   // 체크할 비밀번호 규칙
