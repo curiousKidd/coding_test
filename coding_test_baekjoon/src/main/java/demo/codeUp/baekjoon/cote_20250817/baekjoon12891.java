@@ -11,63 +11,93 @@ public class baekjoon12891 {
     // https://www.acmicpc.net/problem/12891
 
 
-    static int[] passwordRegex = new int[4];   // 체크할 비밀번호 규칙
-    static int[] myPassword = new int[4];   // 나의 비밀번호
-    static int checkSecret = 0;        // 만족한 비밀번호 규칙
+    static int checkArr[];
+    static int myArr[];
+    static int checkSecret;
+
 
     public static void main(String[] args) throws NumberFormatException, IOException {
-        int count = 0;
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(bf.readLine());
-
-        int s = Integer.parseInt(st.nextToken());       // 주어진 텍스트 문자열 길이
-        int p = Integer.parseInt(st.nextToken());       // 사용할 텍스트 문자열 길이
-
-        String password = bf.readLine();            // 주어진 텍스트
-        char[] chars = password.toCharArray();
-
+        int S = Integer.parseInt(st.nextToken());
+        int P = Integer.parseInt(st.nextToken());
+        int Result = 0;
+        char A[] = new char[S];
+        checkArr = new int[4];
+        myArr = new int[4];
+        checkSecret = 0;
+        A = bf.readLine().toCharArray();
         st = new StringTokenizer(bf.readLine());
         for (int i = 0; i < 4; i++) {
-            // 순서대로 A C G T
-            passwordRegex[i] = Integer.parseInt(st.nextToken());
-            if (passwordRegex[i] == 0)
-                // 0일 경우에는 만족한것으로 치부
+            checkArr[i] = Integer.parseInt(st.nextToken());
+            if (checkArr[i] == 0)
                 checkSecret++;
         }
-
-
-        System.out.println(count);
+        for (int i = 0; i < P; i++) { //초기 P부분 문자열 처리 부분
+            Add(A[i]);
+        }
+        if (checkSecret == 4)
+            Result++;
+        // 슬라이딩 윈도우 처리 부분
+        for (int i = P; i < S; i++) {
+            int j = i - P;
+            Add(A[i]);
+            Remove(A[j]);
+            if (checkSecret == 4)  // 4자리 수에 대한 크기가 모두 충족되었을 때는 유효한 비밀번호
+                Result++;
+        }
+        System.out.println(Result);
         bf.close();
     }
 
-    private static void add(char c) {
+    private static void Add(char c) { //새로 들어온 문자를 처리해주는 함수
         switch (c) {
             case 'A':
-                passwordRegex[0]++;
-                if (passwordRegex[0] == myPassword[0]) {
+                myArr[0]++;
+                if (myArr[0] == checkArr[0])
                     checkSecret++;
-                }
                 break;
             case 'C':
-                passwordRegex[1]++;
-                if (passwordRegex[1] == myPassword[1]) {
+                myArr[1]++;
+                if (myArr[1] == checkArr[1])
                     checkSecret++;
-                }
                 break;
             case 'G':
-                passwordRegex[2]++;
-                if (passwordRegex[2] == myPassword[2]) {
+                myArr[2]++;
+                if (myArr[2] == checkArr[2])
                     checkSecret++;
-                }
                 break;
             case 'T':
-                passwordRegex[3]++;
-                if (passwordRegex[3] == myPassword[3]) {
+                myArr[3]++;
+                if (myArr[3] == checkArr[3])
                     checkSecret++;
-                }
                 break;
         }
+    }
 
+    private static void Remove(char c) { //제거되는  문자를 처리해주는 함수
+        switch (c) {
+            case 'A':
+                if (myArr[0] == checkArr[0])
+                    checkSecret--;
+                myArr[0]--;
+                break;
+            case 'C':
+                if (myArr[1] == checkArr[1])
+                    checkSecret--;
+                myArr[1]--;
+                break;
+            case 'G':
+                if (myArr[2] == checkArr[2])
+                    checkSecret--;
+                myArr[2]--;
+                break;
+            case 'T':
+                if (myArr[3] == checkArr[3])
+                    checkSecret--;
+                myArr[3]--;
+                break;
+        }
     }
 
 }
