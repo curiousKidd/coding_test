@@ -16,6 +16,7 @@ public class baekjoon12891 {
     static int checkSecret;
 
 
+    //
     public static void main(String[] args) throws NumberFormatException, IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(bf.readLine());
