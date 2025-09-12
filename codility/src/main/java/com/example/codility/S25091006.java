@@ -1,30 +1,52 @@
 package com.example.codility;
 
-public class S25091004 {
-    public static void main(String[] args) {
-        int[] A = {3, 1, 5, 3, 4, 2}; // result 3
+import java.util.HashSet;
+import java.util.Set;
 
-        System.out.println("solution() = " + solution(A));
+public class S25091006 {
+    public static void main(String[] args) {
+        String s = "15:15:00", t = "15:15:12";
+
+        System.out.println("solution() = " + solution(s, t));
     }
 
 
-    public static int solution(int[] A) {
-        int n = A.length;
-        if (n < 2) return 0;
+    public static int solution(String S, String T) {
+        int count = 0;
 
-        long[] sum = new long[3];
-        sum[0] = (long) A[0] + A[1];
-        sum[1] = (long) A[0] + A[n - 1];
-        sum[2] = (long) A[n - 1] + A[n - 2];
+        int start = convertSecond(S);
+        int end = convertSecond(T);
+        if (end < start) end += 24 * 3600;
 
-        int answer = 0;
-        for (long l : sum) {
-            answer = Math.max(answer, (int) l);
+        for (int i = start; i <= end; i++) {
+            String nowTimeText = convertFormat(i);
+            System.out.println("nowTimeText = " + nowTimeText);
 
+            Set<Character> set = new HashSet<>();
+            for (char c : nowTimeText.toCharArray()) set.add(c);
+            System.out.println("set = " + set.size());
+
+            if (set.size() <= 2) count++;
         }
 
+        return count;
+    }
 
-        return answer;
+    private static int convertSecond(String time) {
+        String[] split = time.split(":");
+        int hour = Integer.parseInt(split[0]);
+        int minute = Integer.parseInt(split[1]);
+        int second = Integer.parseInt(split[2]);
+
+        return hour * 3600 + minute * 60 + second;
+    }
+
+    private static String convertFormat(int second) {
+        int hour = second / 3600;
+        int min = second % 3600 / 60;
+        int sec = second % 60;
+
+        return String.format("%02d%02d%02d", hour, min, sec);
     }
 
 }
