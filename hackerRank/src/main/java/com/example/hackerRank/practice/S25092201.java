@@ -1,4 +1,4 @@
-package com.example.hackerRank;
+package com.example.hackerRank.practice;
 
 import java.io.BufferedReader;
 import java.io.IOException;

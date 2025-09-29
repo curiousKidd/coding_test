@@ -1,4 +1,4 @@
-package com.example.hackerRank;
+package com.example.hackerRank.practice;
 
 import java.io.*;
 import java.util.ArrayList;
