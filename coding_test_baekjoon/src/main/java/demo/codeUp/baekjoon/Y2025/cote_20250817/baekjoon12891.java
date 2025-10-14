@@ -1,4 +1,4 @@
-package demo.codeUp.baekjoon.cote_20250817;
+package demo.codeUp.baekjoon.Y2025.cote_20250817;
 
 import java.io.BufferedReader;
 import java.io.IOException;
