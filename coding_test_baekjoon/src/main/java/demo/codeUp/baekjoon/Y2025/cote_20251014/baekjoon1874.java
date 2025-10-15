@@ -3,8 +3,8 @@ package demo.codeUp.baekjoon.Y2025.cote_20251014;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class baekjoon1874 {
 
@@ -24,41 +24,26 @@ public class baekjoon1874 {
     }
 
     public static void solution(int[] array, int n) throws IOException {
-        ArrayList<Character> result = new ArrayList<>();
+        Deque<Integer> stack = new ArrayDeque<>();
+        StringBuilder ops = new StringBuilder();
 
-        Stack<Integer> stack = new Stack<>();
-
-        // array 위치
-        int now = 0;
-
-        /**
-         * 1- n 까지 숫자
-         */
-
-        // push 변수
-        int i = 1;
-
-        while (now < n) {
-            result.add('+');
-            stack.push(i);
-            if (array[now] == stack.peek()) {
-                result.add('-');
+        int next = 1;
+        for (int x : array) {
+            // x를 만들기 위해 x까지 push
+            while (next <= x) {
+                stack.push(next++);
+                ops.append("+\n");
+            }
+            // 이제 꼭대기가 x여야 pop 가능
+            if (!stack.isEmpty() && stack.peek() == x) {
                 stack.pop();
-                now++;
-                i++;
-            } else if (array[now] < stack.peek()) {
-                System.out.println("i = " + i);
-                System.out.println("array = " + array[now]);
-                System.out.println("stack = " + stack.peek());
-                System.out.println("NO");
-                break;
+                ops.append("-\n");
             } else {
-                i++;
+                System.out.println("NO");
+                return;
             }
         }
-
-        result.stream().forEach(System.out::println);
-
+        System.out.print(ops);
     }
 
 }
