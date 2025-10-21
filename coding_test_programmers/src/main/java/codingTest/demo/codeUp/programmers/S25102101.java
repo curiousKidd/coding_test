@@ -1,6 +1,7 @@
 package codingTest.demo.codeUp.programmers;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class S25102101 {
 
@@ -22,54 +23,51 @@ public class S25102101 {
 
         int n = friends.length;
 
-        HashMap<String, Integer> map = new HashMap<>();
+        // name > index 맵핑
+        Map<String, Integer> map = new HashMap<>();
         for (int i = 0; i < n; i++) {
             map.put(friends[i], i);
         }
 
-        // "A B" = A > B 에게 선물을 줌
-        int[][] give = new int[n][n];
-        int[] in = new int[n];
-        int[] out = new int[n];
-
+        int[][] give = new int[n][n];   // 주고받은거
+        int[] out = new int[n];         // 준거
+        int[] in = new int[n];          // 받은거
         for (String gift : gifts) {
             String[] split = gift.split(" ");
-            int a = map.get(split[0]);
-            int b = map.get(split[1]);
-
-            give[a][b]++;
-            out[a]++;
-            in[b]++;
+            int i = map.get(split[0]);
+            int j = map.get(split[1]);
+            out[i]++;
+            in[j]++;
+            give[i][j]++;
         }
 
         int[] score = new int[n];
         for (int i = 0; i < n; i++) score[i] = out[i] - in[i];
 
-        // 4) 다음 달에 받을 개수 예측
         int[] next = new int[n];
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-
                 int ab = give[i][j];
                 int ba = give[j][i];
 
                 if (ab > ba) {
-                    // i가 j에게 더 많이 줬음 -> i가 1개 받음
                     next[i]++;
                 } else if (ab < ba) {
-                    // j가 i에게 더 많이 줬음 -> j가 1개 받음
                     next[j]++;
                 } else {
-                    // 기록이 없거나 동일 -> 선물지수 비교
-                    if (score[i] > score[j]) next[i]++;
-                    else if (score[i] < score[j]) next[j]++;
-                    // 같으면 아무도 받지 않음
+                    if (score[i] > score[j]) {
+                        next[i]++;
+                    } else if (score[j] > score[i]) {
+                        next[j]++;
+                    }
                 }
             }
         }
 
-        // 5) 최댓값
-        for (int x : next) answer = Math.max(answer, x);
+        for (int x : next) {
+            answer = Math.max(answer, x);
+        }
+
         return answer;
     }
 
