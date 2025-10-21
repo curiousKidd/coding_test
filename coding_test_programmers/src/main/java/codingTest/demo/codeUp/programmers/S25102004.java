@@ -25,20 +25,18 @@ public class S25102004 {
 
         for (int i = mats.length - 1; i >= 0; i--) {
             int mat = mats[i];
-            System.out.println("mat = " + mat);
 
             if (mat > r || mat > c) continue;
 
-            if (getSize(park, mat)) return mat;
+            if (getSize(park, mat, r, c)) return mat;
         }
-
 
         return -1;
     }
 
-    private static boolean getSize(String[][] park, int size) {
-        for (int x = 0; x < park.length; x++) {
-            for (int y = 0; y < park[x].length; y++) {
+    private static boolean getSize(String[][] park, int size, int r, int c) {
+        for (int x = 0; x + size <= r; x++) {
+            for (int y = 0; y + size <= c; y++) {
                 if (isSizeCheck(park, x, y, size)) return true;
             }
         }
@@ -48,8 +46,8 @@ public class S25102004 {
 
 
     private static boolean isSizeCheck(String[][] park, int sx, int sy, int size) {
-        for (int x = sx; x < park.length; x++) {
-            for (int y = sy; y < park[x].length; y++) {
+        for (int x = sx; x < sx + size; x++) {
+            for (int y = sy; y < sy + size; y++) {
                 if (!Objects.equals(park[x][y], "-1")) return false;
             }
         }
