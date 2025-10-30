@@ -40,7 +40,7 @@ public class S25102803 {
      */
     public static String[] solution2(String[] players, String[] callings) {
         // 이름 -> 현재 순위(인덱스)
-        Map<String, Integer> pos = new HashMap<>(players.length * 2);
+        Map<String, Integer> pos = new HashMap<>();
         for (int i = 0; i < players.length; i++) {
             pos.put(players[i], i);
         }

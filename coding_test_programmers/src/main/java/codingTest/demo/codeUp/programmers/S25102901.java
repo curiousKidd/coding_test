@@ -1,66 +1,44 @@
 package codingTest.demo.codeUp.programmers;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
 
-public class S25102803 {
+public class S25102901 {
 
-//    https://school.programmers.co.kr/learn/courses/30/lessons/178871
+    // https://school.programmers.co.kr/learn/courses/30/lessons/176963
 
     public static void main(String[] args) {
-        String[] players = {"mumu", "soe", "poe", "kai", "mine"};
-        String[] callings = {"kai", "kai", "mine", "mine"};
-        System.out.println(Arrays.toString(solution(players, callings)));
+        String[] name = {"may", "kein", "kain", "radi"};
+        int[] yearning = {5, 10, 1, 3};
+        String[][] photo = {{"may", "kein", "kain", "radi"}, {"may", "kein", "brin", "deny"}, {"kon", "kain", "may", "coni"}};
+        System.out.println(Arrays.toString(solution(name, yearning, photo)));
 
     }
 
 
     /**
-     * @param players  : 선수 이름 배열
-     * @param callings : 해설진이 부른 이름 배열 : 해설진이 부른 이름은 등수 +1
+     * @param name     : 인물 이름
+     * @param yearning : 점수
+     * @param photo    : 사진 속 인물의 이름 이차 배열
      * @return
      */
-    public static String[] solution(String[] players, String[] callings) {
-        List<String> list = Arrays.asList(players);
+    public static int[] solution(String[] name, int[] yearning, String[][] photo) {
+        int[] answer = new int[photo.length];
 
+        HashMap<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < name.length; i++) {
+            map.put(name[i], yearning[i]);
+        }
 
-        for (String calling : callings) {
-            int i = list.indexOf(calling);
-            if (i > 0) {
-                Collections.swap(list, i, i - 1);
+        for (int i = 0; i < photo.length; i++) {
+            int count = 0;
+            for (String p : photo[i]) {
+                count += map.getOrDefault(p, 0);
             }
+            answer[i] = count;
         }
 
-        return list.toArray(new String[0]);
-    }
-
-    /**
-     * @param players  : 선수 이름 배열
-     * @param callings : 해설진이 부른 이름 배열 : 해설진이 부른 이름은 등수 +1
-     * @return
-     */
-    public static String[] solution2(String[] players, String[] callings) {
-        // 이름 -> 현재 순위(인덱스)
-        Map<String, Integer> pos = new HashMap<>();
-        for (int i = 0; i < players.length; i++) {
-            pos.put(players[i], i);
-        }
-
-        for (String name : callings) {
-            int i = pos.get(name);
-            if (i == 0) continue; // 맨 앞이면 스킵
-
-            // 앞사람과 자리 바꾸기 (배열 스왑)
-            String front = players[i - 1];
-            players[i - 1] = players[i];
-            players[i] = front;
-
-            // 두 사람의 인덱스 동기화 (O(1))
-            pos.put(name, i - 1);
-            pos.put(front, i);
-        }
-
-        // players 배열이 이미 제자리에서 변경됨
-        return players;
+        return answer;
     }
 
 }

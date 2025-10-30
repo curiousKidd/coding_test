@@ -1,45 +1,113 @@
 package codingTest.demo.codeUp.programmers;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Map;
 
-public class S25102901 {
+public class S25102902 {
 
-//    https://school.programmers.co.kr/learn/courses/30/lessons/178871
+    // https://school.programmers.co.kr/learn/courses/30/lessons/172928
 
     public static void main(String[] args) {
-        String[] name = {"may", "kein", "kain", "radi"};
-        int[] yearning = {5, 10, 1, 3};
-        String[][] photo = {{"may", "kein", "kain", "radi"}, {"may", "kein", "brin", "deny"}, {"kon", "kain", "may", "coni"}};
-        System.out.println(Arrays.toString(solution(name, yearning, photo)));
+//        String[] park = {"SOO", "OOO", "OOO"};
+//        String[] routes = {"E 2", "S 2", "W 1"};
+
+        String[] park = {"SOO", "OXX", "OOO"};
+        String[] routes = {"E 2", "S 2", "W 1"};
+
+        System.out.println(Arrays.toString(solution2(park, routes)));
+// 예상 출력: [19, 15, 6]
+
 
     }
 
 
     /**
-     * @param name     : 인물 이름
-     * @param yearning : 점수
-     * @param photo    : 사진 속 인물의 이름 이차 배열
+     * @param park   공원의 넓이
+     * @param routes
      * @return
      */
-    public static int[] solution(String[] name, int[] yearning, String[][] photo) {
-        int[] answer = new int[photo.length];
+    public static int[] solution(String[] park, String[] routes) {
+//
+//        int ph = 0; // 현재 나의 높이 위치
+//        int pw = 0; // 현재 나의 넓이 위치
+//        int h = park.length;    // 공원 높이
+//        int w = park[0].length(); // 공원 넓이
+//
+//        String[][] map = new String[h][w];
+//
+//
+//        for (String route : routes) {
+//
+//
+//            for (String route : routes) {
+//                String[] parts = route.split(" ");
+//                String way = parts[0];
+//                int count = Integer.parseInt(parts[1]);
+//
+//                switch (way) {
+//                    case "E":
+//                        pw += count;
+//                    case "W":
+//                    case "S":
+//                    case "N":
+//                }
+//
+//            }
+//
+//            return answer;
+//        }
 
-        HashMap<String, Integer> map = new HashMap<>();
-        for (int i = 0; i < name.length; i++) {
-            map.put(name[i], yearning[i]);
-        }
+        return new int[0];
 
-        for (int i = 0; i < photo.length; i++) {
-            int count = 0;
-            for (String p : photo[i]) {
-                count += map.getOrDefault(p, 0);
-            }
-            answer[i] = count;
-        }
-
-        return answer;
     }
 
+    public static int[] solution2(String[] park, String[] routes) {
+        int h = park.length;
+        int w = park[0].length();
+
+        int r = 0, c = 0;
+        // 시작점 탐색
+        outer:
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                if (park[i].charAt(j) == 'S') {
+                    r = i;
+                    c = j;
+                    break outer;
+                }
+            }
+        }
+
+        Map<String, Integer> dRow = Map.of("N", -1, "S", 1, "W", 0, "E", 0);
+        Map<String, Integer> dCol = Map.of("N", 0, "S", 0, "W", -1, "E", 1);
+
+        for (String route : routes) {
+            String[] parts = route.split(" ");
+            String dir = parts[0];
+            int len = Integer.parseInt(parts[1]);
+
+            int nr = r, nc = c;
+            boolean ok = true;
+            for (int k = 0; k < len; k++) {
+                nr += dRow.get(dir);
+                nc += dCol.get(dir);
+                if (nr < 0 || nr >= h || nc < 0 || nc >= w) {
+                    ok = false;
+                    break;
+                }
+                if (park[nr].charAt(nc) == 'X') {
+                    ok = false;
+                    break;
+                }
+            }
+            if (ok) {
+                r = nr;
+                c = nc;
+            }
+        }
+
+        return new int[]{r, c};
+
+    }
 }
 
