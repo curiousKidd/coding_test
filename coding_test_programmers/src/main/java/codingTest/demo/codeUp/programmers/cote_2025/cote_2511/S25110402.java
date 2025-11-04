@@ -1,39 +1,37 @@
 package codingTest.demo.codeUp.programmers.cote_2025.cote_2511;
 
-import java.util.Arrays;
+public class S25110402 {
 
-public class S251104 {
-
-    // https://school.programmers.co.kr/learn/courses/30/lessons/161990
+    // https://school.programmers.co.kr/learn/courses/30/lessons/161989
 
     public static void main(String[] args) {
-        String[] wallpaper = {".#...", "..#..", "...#."};
-
-        System.out.println(Arrays.toString(solution(wallpaper)));
+        System.out.println((solution(4, 1, new int[]{1, 2, 3, 4})));
     }
 
 
     /**
-     * @param wallpaper : 바탕화면 1차 배열 : #이 파일 존재
+     * @param n       : 벽 길이
+     * @param m       : 롤러 길이
+     * @param section : 칠해야하는 벽 배열
      * @return
      */
-    public static int[] solution(String[] wallpaper) {
-        int sx = 99, sy = 99;
-        int ex = 0, ey = 0;
+    public static int solution(int n, int m, int[] section) {
+        int answer = 0;
 
-        for (int i = 0; i < wallpaper.length; i++) {
-            String s = wallpaper[i];
-            for (int j = 0; j < wallpaper[i].length(); j++) {
-                if ('#' == (s.charAt(j))) {
-                    sx = Math.min(sx, i);
-                    sy = Math.min(sy, j);
-                    ex = Math.max(ex, i);
-                    ey = Math.max(ey, j);
-                }
+        int start = section[0];
+        int end = section[0];
+        for (int i : section) {
+            if (i - start >= m) {
+                start = i;
+                answer++;
             }
+
+            end = Math.max(end, i);
         }
 
-        return new int[]{sx, sy, ex + 1, ey + 1};
+        answer++;
+
+        return answer;
     }
 
 }

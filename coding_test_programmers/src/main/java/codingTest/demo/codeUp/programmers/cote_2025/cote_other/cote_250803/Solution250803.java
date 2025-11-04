@@ -1,4 +1,4 @@
-package codingTest.demo.codeUp.programmers.cote_250803;
+package codingTest.demo.codeUp.programmers.cote_2025.cote_other.cote_250803;
 
 import java.util.Stack;
 

@@ -1,4 +1,4 @@
-package codingTest.demo.codeUp.programmers.cote_250218;
+package codingTest.demo.codeUp.programmers.cote_2025.cote_other.cote_250218;
 
 import java.util.HashSet;
 import java.util.Set;

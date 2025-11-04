@@ -1,4 +1,4 @@
-package codingTest.demo.codeUp.programmers.cote_250426;
+package codingTest.demo.codeUp.programmers.cote_2025.cote_other.cote_250426;
 
 import java.util.HashMap;
 import java.util.Map;

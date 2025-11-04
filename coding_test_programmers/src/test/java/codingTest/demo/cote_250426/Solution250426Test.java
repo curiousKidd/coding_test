@@ -1,6 +1,6 @@
 package codingTest.demo.cote_250426;
 
-import codingTest.demo.codeUp.programmers.cote_250426.Solution250426;
+import codingTest.demo.codeUp.programmers.cote_2025.cote_other.cote_250426.Solution250426;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

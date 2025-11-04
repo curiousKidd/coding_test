@@ -2,7 +2,7 @@ package codingTest.demo.codeUp.programmers.cote_2025.cote_2511;
 
 import java.util.Arrays;
 
-public class S251104 {
+public class S25110401 {
 
     // https://school.programmers.co.kr/learn/courses/30/lessons/161990
 

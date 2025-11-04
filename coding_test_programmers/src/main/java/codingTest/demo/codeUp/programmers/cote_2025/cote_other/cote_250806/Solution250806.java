@@ -1,4 +1,4 @@
-package codingTest.demo.codeUp.programmers.cote_250806;
+package codingTest.demo.codeUp.programmers.cote_2025.cote_other.cote_250806;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

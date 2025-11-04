@@ -1,4 +1,4 @@
-package codingTest.demo.codeUp.programmers.cote_250212;
+package codingTest.demo.codeUp.programmers.cote_2025.cote_other.cote_250212;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package codingTest.demo.codeUp.programmers;
+package codingTest.demo.codeUp.programmers.cote_2025.cote_2510;
 
 import java.util.*;
 
