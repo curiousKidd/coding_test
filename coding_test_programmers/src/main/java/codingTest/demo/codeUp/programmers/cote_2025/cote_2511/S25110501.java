@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class S25110501 {
 
-    // https://school.programmers.co.kr/learn/courses/30/lessons/161989
+    // https://school.programmers.co.kr/learn/courses/30/lessons/160586
 
     public static void main(String[] args) {
         String[] keymap = {"ABACD", "BCEFD"};
@@ -21,11 +21,12 @@ public class S25110501 {
      */
     public static int[] solution(String[] keymap, String[] targets) {
         int[] answer = new int[targets.length];
-        
+
         for (int i = 0; i < targets.length; i++) {
             String s = targets[i];
             int count = 0;
 
+            outer:
             for (char c : s.toCharArray()) {
                 int idx = Integer.MAX_VALUE;
                 boolean found = false;
@@ -42,7 +43,8 @@ public class S25110501 {
                     }
                 }
                 if (!found) {
-                    return new int[]{-1};
+                    count = -1;
+                    break outer;
                 }
                 count += idx;
             }
